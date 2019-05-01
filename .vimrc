@@ -1,4 +1,11 @@
+set wildmenu
+set fileencodings=utf-8,koi8-r
+set list
+let g:hdr42user="ozhadaie"
+let g:hdr42mail=""
 let mapleader=","
+let g:C_MapLeader  = '\'
+set spell spelllang=ru,en
 map <Leader>e :vsp ~/.vimrc<CR>
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
@@ -6,6 +13,35 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 "{{{					PLUGINS:
+
+"{{{
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['black',       'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+
+let g:rbpt_max = 16
+
+let g:rbpt_loadcmd_toggle = 0
+"}}}
 
 "{{{	NERDTree:
 "
@@ -39,31 +75,6 @@ let g:NERDTreeShowBookmarks=1
 let g:NERDTreeWinSize=30
 "}}}
 
-"{{{ NERDCommenter
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-
-" Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
-" }}}
 
 " {{{ Airline
 
@@ -164,6 +175,62 @@ set nowritebackup
 " }}}
 
 " {{{ MAPPINGS
+
+"-------------------------------------------------------------------------------
+"  some additional hot keys
+"-------------------------------------------------------------------------------
+"    F2   -  write file without confirmation
+"    F3   -  call file explorer Ex
+"    F4   -  show tag under curser in the preview window (tagfile must exist!)
+"    F5   -  open quickfix error window
+"    F6   -  close quickfix error window
+"    F7   -  display previous error
+"    F8   -  display next error
+"-------------------------------------------------------------------------------
+"
+map   <silent> <F2>        :write<CR>
+map   <silent> <F3>        :Explore<CR>
+nmap  <silent> <F4>        :exe ":ptag ".expand("<cword>")<CR>
+map   <silent> <F5>        :copen<CR>
+map   <silent> <F6>        :cclose<CR>
+map   <silent> <F7>        :cp<CR>
+map   <silent> <F8>        :cn<CR>
+"
+imap  <silent> <F2>   <Esc>:write<CR>
+imap  <silent> <F3>   <Esc>:Explore<CR>
+imap  <silent> <F4>   <Esc>:exe ":ptag ".expand("<cword>")<CR>
+imap  <silent> <F5>   <Esc>:copen<CR>
+imap  <silent> <F6>   <Esc>:cclose<CR>
+imap  <silent> <F7>   <Esc>:cp<CR>
+imap  <silent> <F8>   <Esc>:cn<CR>
+"
+nmap  <C-q> :wqa<CR>
+inoremap  ,  ,<Space>
+
+inoremap  ,  ,<Space>
+inoremap ( ()<Left>
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+
+vnoremap ( s()<Esc>P<Right>%
+vnoremap [ s[]<Esc>P<Right>%
+vnoremap { s{}<Esc>P<Right>%
+"
+"-------------------------------------------------------------------------------
+" autocomplete quotes (visual and select mode)
+"-------------------------------------------------------------------------------
+xnoremap  '  s''<Esc>P<Right>
+xnoremap  "  s""<Esc>P<Right>
+xnoremap  `  s``<Esc>P<Right>
+"
+"-------------------------------------------------------------------------------
+" Change the working directory to the directory containing the current file
+"-------------------------------------------------------------------------------
+if has("autocmd")
+  autocmd BufEnter * :lchdir %:p:h
+endif " has("autocmd")
+"
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
@@ -234,7 +301,7 @@ cnoreabbrev Q q
 cnoreabbrev Qall qall
 " }}}
 
-"{{{	TABS
+"{{{	INDENT
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -270,4 +337,5 @@ augroup END
 
 set autoread
 " }}}
+
 nnoremap ,html :-1read $HOME/.vim/snippets/some.snp<CR>

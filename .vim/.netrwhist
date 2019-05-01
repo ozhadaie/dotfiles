@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/root/.vim/pack/vim-scripts/start/c.vim/c-support/rc'
+let g:netrw_dirhist_2='/root/.vim/pack/vim-scripts/start/c.vim/plugin'
+let g:netrw_dirhist_3='/root/.vim/pack/vim-scripts/start/c.vim'
+let g:netrw_dirhist_4='/root/.vim/pack/vim-scripts/start/c.vim/ftplugin'
+let g:netrw_dirhist_5='/root/.vim/pack/vim-scripts/start/c.vim'
+let g:netrw_dirhist_6='/root/.vim/pack/vim-scripts/start/c.vim/c-support'
+let g:netrw_dirhist_7='/root/.vim/pack/vim-scripts/start/c.vim/c-support/templates'
+let g:netrw_dirhist_8='/root'
