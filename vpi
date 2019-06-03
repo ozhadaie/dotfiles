@@ -1,8 +1,0 @@
-#!/bin/bash
-
-inst_dir="$HOME/.vim/pack/$1/start/"
-mkdir -p $inst_dir
-cd $inst_dir
-git clone https://github.com/$1/$2.git
-vim -u NONE -c "helptags $2/doc" -c q
-echo "DONE"

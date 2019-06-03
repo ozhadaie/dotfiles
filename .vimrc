@@ -1,17 +1,21 @@
+set background=dark
+set t_Co=256
+set relativenumber
+let g:session_autosave = 'no'
+set enc=utf-8
+set nowrap
 set wildmenu
 set fileencodings=utf-8,koi8-r
-set list
 let g:hdr42user="ozhadaie"
 let g:hdr42mail=""
 let mapleader=","
-let g:C_MapLeader  = '\'
-set spell spelllang=ru,en
+let g:C_MapLeader=""
 map <Leader>e :vsp ~/.vimrc<CR>
 "" Include user's local vim config
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
-
+autocmd BufWinEnter * silent :TagbarOpen<CR>
 "{{{					PLUGINS:
 
 "{{{
@@ -147,10 +151,10 @@ endif
 
 let g:session_directory = "~/.vim/session"
 nnoremap <silent> <leader>sh :terminal<CR>
-set termguicolors
+"set termguicolors
 nnoremap n nzzzv
 nnoremap N Nzzzv
-colorscheme base16-default-dark
+"colorscheme base16-default-dark
 let base16colorspace=256
 
 set gcr=a:blinkon0
@@ -196,6 +200,7 @@ map   <silent> <F6>        :cclose<CR>
 map   <silent> <F7>        :cp<CR>
 map   <silent> <F8>        :cn<CR>
 "
+map <silent> <F9> :!clear && python3.7 %<CR>
 imap  <silent> <F2>   <Esc>:write<CR>
 imap  <silent> <F3>   <Esc>:Explore<CR>
 imap  <silent> <F4>   <Esc>:exe ":ptag ".expand("<cword>")<CR>
@@ -204,15 +209,6 @@ imap  <silent> <F6>   <Esc>:cclose<CR>
 imap  <silent> <F7>   <Esc>:cp<CR>
 imap  <silent> <F8>   <Esc>:cn<CR>
 "
-nmap  <C-q> :wqa<CR>
-inoremap  ,  ,<Space>
-
-inoremap  ,  ,<Space>
-inoremap ( ()<Left>
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
-
 vnoremap ( s()<Esc>P<Right>%
 vnoremap [ s[]<Esc>P<Right>%
 vnoremap { s{}<Esc>P<Right>%
@@ -316,6 +312,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
+set foldmethod=indent
 " }}}
 
 " {{{ augroups
