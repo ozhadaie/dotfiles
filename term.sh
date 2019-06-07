@@ -108,4 +108,4 @@ case $yno in
 esac
 source ~/.zshrc 2> /dev/null
 echo "Choose as terminal font $GREENDroid Sans Mono for Powerline Nerd Font Complete.otf$NC"
-zsh
+echo "And restart terminal"
