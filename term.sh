@@ -60,7 +60,7 @@ __   ___ _ __ ___  _ __   __ _ _ __| |_
                   |_|
 EOF
 printf "$NC"
-echo -n "Do you want to install vim part? [yes or no]: "
+echo "Do you want to install vim part? [yes or no]: \c"
 read yno
 case $yno in
 	[yY] | [yY][Ee][Ss] )
