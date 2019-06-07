@@ -47,7 +47,19 @@ vpi () {
 	vim -u NONE -c "helptags $2/doc" -c q
 	echo "${GREEN}Success${NC}"
 }
-echo "${YELLOW} VIM PART ${NC}"
+printf "$RED"
+echo "\a"
+cat <<- 'EOF'
+       _                            _
+      (_)                          | |
+__   ___ _ __ ___  _ __   __ _ _ __| |_
+\ \ / / | '_ ` _ \| '_ \ / _` | '__| __|
+ \ V /| | | | | | | |_) | (_| | |  | |_
+  \_/ |_|_| |_| |_| .__/ \__,_|_|   \__|
+                  | |
+                  |_|
+EOF
+printf "$NC"
 vpi airblade vim-gitgutter
 vpi chriskempson base16-vim
 vpi easymotion vim-easymotion
