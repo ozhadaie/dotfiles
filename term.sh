@@ -101,7 +101,6 @@ case $yno in
 		;;
 	[nN] | [n|N][O|o] )
 		echo "Not agreed, НУ ЧТО БЕЗ ВИМА ТАК БЕЗ ВИМА";
-		exit 1
 		;;
 	*) echo "Invalid input"
 		;;
