@@ -60,6 +60,21 @@ __   ___ _ __ ___  _ __   __ _ _ __| |_
                   |_|
 EOF
 printf "$NC"
+echo -n "Do you want to install vim part? [yes or no]: "
+read yno
+case $yno in
+	[yY] | [yY][Ee][Ss] )
+		echo "Agreed"
+		;;
+
+	[nN] | [n|N][O|o] )
+		echo "Not agreed, can not proceed the installation";
+		exit 1
+		;;
+	*) echo "Invalid input"
+		;;
+esac
+
 vpi airblade vim-gitgutter
 vpi chriskempson base16-vim
 vpi easymotion vim-easymotion
