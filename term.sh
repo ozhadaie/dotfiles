@@ -89,3 +89,4 @@ if [ -f "~/.vimrc" ]; then
 fi
 source ~/.zshrc 2> /dev/null
 zsh
+echo "Choose as terminal font $GREENDroid Sans Mono for Powerline Nerd Font Complete.otf$NC"
