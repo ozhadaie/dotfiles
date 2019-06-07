@@ -17,13 +17,16 @@ cat <<-'EOF'
      \__\/         |__|/         \__\/         \__\/                       \__\/                     \__\/    
 EOF
 printf "$NC"
-echo "${YELLOW}Installation${NC} oh-my-zsh \c"
+echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
 git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 2> /dev/null
-cp ~/.zshrc ~/.zshrc.orig 2> /dev/null
+if [ -f "~/.zshrc" ]; then
+	echo "Backuping zshrc"
+	cp ~/.zshrc ~/.zshrc.orig 2> /dev/null
+fi
 cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc 2> /dev/null
 echo "${GREEN}Success${NC}"
 # chsh -s /bin/zsh
-echo "${YELLOW}Installation${NC} powerlevel10k \c"
+echo "${YELLOW}Cloning${NC} powerlevel10k \c"
 git clone --quiet https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k 2> /dev/null
 echo "${GREEN}Success${NC}"
 git clone --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2> /dev/null 
@@ -37,13 +40,15 @@ echo "alias zcfg=\"vim ~/.zshrc\"" >> ~/.zshrc
 echo "alias zsrc=\"source ~/.zshrc\"" >> ~/.zshrc
 echo "alias rm=\"rm -i\"" >> ~/.zshrc
 echo "alias rmsh=\"rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim* && echo 'Restart term'\"" >> ~/.zshrc
+source ~/.zshrc 2> /dev/null
+echo "${YELLOW}Installation${NC} font \c"
 case "$OSTYPE" in
 	darwin*) 
-		echo "${YELLOW}Installation${NC} font \c"
 		cd ~/Library/Fonts 2> /dev/null && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 2> /dev/null && cd - >> /dev/null
 		;;
 	linux*)
-		echo "not yet"
+		mkdir -p ~/.local/share/fonts
+		cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 2> /dev/null && cd - >> /dev/null
 		;;
 esac
 echo "${GREEN}Success${NC}"
@@ -70,7 +75,7 @@ __   ___ _ __ ___  _ __   __ _ _ __| |_
                   |_|
 EOF
 printf "$NC"
-echo "Do you want to install vim part? [yes or no]: \c"
+echo "Do you want to install vim plugins? [yes or no]: \c"
 read yno
 case $yno in
 	[yY] | [yY][Ee][Ss] )
@@ -95,19 +100,23 @@ case $yno in
 		vpi xolox vim-misc
 		vpi xolox vim-session
 		vpi jiangmiao auto-pairs
-		cd $PREV_DIR 2> /dev/null
-		if [ -f "~/.vimrc" ]; then
-			cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
-		fi
-		curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc 2> /dev/null && 
-		source ~/.vimrc 2> /dev/null
+		echo "Do you want to overwrite vimrc? [yes or no]: \c"
+		read ans
+		case $ans in
+			[yY] | [yY][Ee][Ss] )
+				cd $PREV_DIR 2> /dev/null
+				if [ -f "~/.vimrc" ]; then
+					cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
+				fi
+				curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc 2> /dev/null && source ~/.vimrc 2> /dev/null
+				;;
+		esac
 		;;
 	[nN] | [n|N][O|o] )
-		echo "Not agreed, НУ ЧТО БЕЗ ВИМА ТАК БЕЗ ВИМА";
+		echo "Not agreed, НУ ЧТО Ж.. БЕЗ ВИМА ТАК БЕЗ ВИМА";
 		;;
 	*) echo "Invalid input"
 		;;
 esac
-source ~/.zshrc 2> /dev/null
 echo "Choose as terminal font $GREEN Droid Sans Mono for Powerline Nerd Font Complete.otf$NC"
 echo "And restart terminal"
