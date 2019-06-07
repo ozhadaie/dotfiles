@@ -33,7 +33,7 @@ echo "POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)" >> ~/.
 echo "alias zcfg=\"vim ~/.zshrc\"" >> ~/.zshrc
 echo "alias zsrc=\"source ~/.zshrc\"" >> ~/.zshrc
 echo "alias rm=\"rm -i\"" >> ~/.zshrc
-echo "alias rmsh=\"rm -rf .oh-my-zsh .zsh* .vim*\"" >> ~/.zshrc
+echo "alias rmsh=\"rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim*\"" >> ~/.zshrc
 echo "${YELLOW}Installation${NC} font \c"
 cd ~/Library/Fonts 2> /dev/null && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 2> /dev/null && cd - >> /dev/null
 echo "${GREEN}Success${NC}"
