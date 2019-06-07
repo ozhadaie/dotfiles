@@ -83,7 +83,9 @@ vpi xolox vim-session
 vpi jiangmiao auto-pairs
 cd $PREV_DIR 2> /dev/null
 cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
-curl "https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc" ~/.vimrc 2> /dev/null
-vim ~/.vimrc -c "so %" -c wq
+curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc 2> /dev/null
+if [ -f "~/.vimrc" ]; then
+	source ~/.vimrc 2> /dev/null
+fi
 source ~/.zshrc 2> /dev/null
 zsh
