@@ -44,6 +44,7 @@ source ~/.zshrc 2> /dev/null
 echo "${YELLOW}Installation${NC} font \c"
 case "$OSTYPE" in
 	darwin*) 
+		mkdir -p ~/Library/Fonts
 		cd ~/Library/Fonts 2> /dev/null && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf 2> /dev/null && cd - >> /dev/null
 		;;
 	linux*)
