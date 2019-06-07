@@ -70,7 +70,8 @@ vpi xolox vim-misc
 vpi xolox vim-session
 vpi jiangmiao auto-pairs
 cd $PREV_DIR 2> /dev/null
-cp ~/Downloads/vimrc.crash ~/.vimrc 2> /dev/null
+cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
+curl "https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc" ~/.vimrc 2> /dev/null
 vim ~/.vimrc -c "so %" -c wq
 source ~/.zshrc 2> /dev/null
 zsh
