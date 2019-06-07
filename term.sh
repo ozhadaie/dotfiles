@@ -36,7 +36,7 @@ echo "POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)" >> ~/.
 echo "alias zcfg=\"vim ~/.zshrc\"" >> ~/.zshrc
 echo "alias zsrc=\"source ~/.zshrc\"" >> ~/.zshrc
 echo "alias rm=\"rm -i\"" >> ~/.zshrc
-echo "alias rmsh=\"rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim* && echo \"Restart term\"\"" >> ~/.zshrc
+echo "alias rmsh=\"rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim* && echo 'Restart term'\"" >> ~/.zshrc
 case "$OSTYPE" in
 	darwin*) 
 		echo "${YELLOW}Installation${NC} font \c"
