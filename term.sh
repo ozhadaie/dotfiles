@@ -71,44 +71,41 @@ echo "Do you want to install vim part? [yes or no]: \c"
 read yno
 case $yno in
 	[yY] | [yY][Ee][Ss] )
-		echo "Agreed"
+		vpi airblade vim-gitgutter
+		vpi chriskempson base16-vim
+		vpi easymotion vim-easymotion
+		vpi kien rainbow_parentheses.vim
+		vpi majutsushi tagbar
+		vpi powerline powerline
+		vpi ryanoasis vim-devicons
+		vpi scrooloose nerdtree
+		vpi tiagofumo vim-nerdtree-syntax-highlight
+		vpi tpope vim-speeddating
+		vpi tpope vim-repeat
+		vpi tpope vim-surround
+		vpi tpope vim-fugitive
+		vpi vim-airline vim-airline
+		vpi vim-airline vim-airline-themes
+		vpi vim-scripts c.vim
+		vpi vim-syntastic syntastic
+		vpi w0rp ale
+		vpi xolox vim-misc
+		vpi xolox vim-session
+		vpi jiangmiao auto-pairs
+		cd $PREV_DIR 2> /dev/null
+		if [ -f "~/.vimrc" ]; then
+			cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
+		fi
+		curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc 2> /dev/null && 
+		source ~/.vimrc 2> /dev/null
 		;;
-
 	[nN] | [n|N][O|o] )
-		echo "Not agreed, can not proceed the installation";
+		echo "Not agreed, НУ ЧТО БЕЗ ВИМА ТАК БЕЗ ВИМА";
 		exit 1
 		;;
 	*) echo "Invalid input"
 		;;
 esac
-
-vpi airblade vim-gitgutter
-vpi chriskempson base16-vim
-vpi easymotion vim-easymotion
-vpi kien rainbow_parentheses.vim
-vpi majutsushi tagbar
-vpi powerline powerline
-vpi ryanoasis vim-devicons
-vpi scrooloose nerdtree
-vpi tiagofumo vim-nerdtree-syntax-highlight
-vpi tpope vim-speeddating
-vpi tpope vim-repeat
-vpi tpope vim-surround
-vpi tpope vim-fugitive
-vpi vim-airline vim-airline
-vpi vim-airline vim-airline-themes
-vpi vim-scripts c.vim
-vpi vim-syntastic syntastic
-vpi w0rp ale
-vpi xolox vim-misc
-vpi xolox vim-session
-vpi jiangmiao auto-pairs
-cd $PREV_DIR 2> /dev/null
-cp ~/.vimrc ~/.vimrc.orig 2> /dev/null
-curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc 2> /dev/null
-if [ -f "~/.vimrc" ]; then
-	source ~/.vimrc 2> /dev/null
-fi
 source ~/.zshrc 2> /dev/null
 echo "Choose as terminal font $GREENDroid Sans Mono for Powerline Nerd Font Complete.otf$NC"
 zsh
