@@ -21,29 +21,22 @@ echo "Do you want to install zsh plugins? [yes|no]: \a\c"
 read plans
 case $plans in
 	[yY] | [yY][Ee][Ss] )
-		if [ ! -d "~/.oh-my-zsh" ]; then
-			echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
-			git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-		fi
-		if [ -f "~/.zshrc" ]; then
+		rm -rf ~/.oh-my-zsh
+		echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
+		git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
+		echo "${GREEN}Success${NC}"
+		# chsh -s $(which zsh)
+		echo "${YELLOW}Cloning${NC} powerlevel10k \c"
+		git clone --quiet https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null
+		echo "${GREEN}Success${NC}"
+		git clone --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null
+		git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting > /dev/null
+		if [ -f $HOME/.zshrc ]; then
 			echo "Backuping zshrc"
 			cp ~/.zshrc ~/.zshrc.orig
 		fi
 		curl -fLo ~/.zshrc "https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.zshrc" > /dev/null
-		echo "${GREEN}Success${NC}"
-		# chsh -s $(which zsh)
-		if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
-			echo "${YELLOW}Cloning${NC} powerlevel10k \c"
-			git clone --quiet https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-			echo "${GREEN}Success${NC}"
-		fi
-		if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-			git clone --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null
-		fi
-		if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax/highlighting" ]; then
-			git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting /dev/null
-		fi
-		source ~/.zshrc > /dev/null
+		source ~/.zshrc
 		echo "${YELLOW}Downloading${NC} font \c"
 		case $(uname | tr '[:upper:]' '[:lower:]') in
 			linux*)
@@ -93,6 +86,7 @@ echo "Do you want to install vim plugins? [yes or no]: \a\c"
 read vimans
 case $vimans in
 	[yY] | [yY][Ee][Ss] )
+		rm -rf $HOME/.vim
 		vpi airblade vim-gitgutter
 		vpi chriskempson base16-vim
 		vpi easymotion vim-easymotion
@@ -116,18 +110,13 @@ case $vimans in
 		vpi w0rp ale
 		vpi xolox vim-misc
 		vpi xolox vim-session
-		if [ -f "~/.vimrc" ]; then
-			echo "Do you want to overwrite vimrc? [yes or no]: \c"
-			read ans
-			case $ans in
-				[yY] | [yY][Ee][Ss] )
-					cd $PREV_DIR
-					echo "Creating a backup for .vimrc"
-					cp ~/.vimrc ~/.vimrc.orig
-					curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc && source ~/.vimrc
-					;;
-			esac
+		if [ -f "$~/.vimrc" ]; then
+			echo "Creating a backup for .vimrc"
+			cp ~/.vimrc ~/.vimrc.orig
 		fi
+		curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc
+		vim -c "so ~/.vimrc" -c "q"
+		cd $PREV_DIR
 		;;
 	[nN] | [n|N][O|o] )
 		;;
