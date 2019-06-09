@@ -312,7 +312,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
-set foldmethod=indent
+set foldmethod=manual
 " }}}
 
 " {{{ augroups
