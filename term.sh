@@ -17,9 +17,15 @@ cat <<-'EOF'
      \__\/         |__|/         \__\/         \__\/                       \__\/                     \__\/    
 EOF
 printf "$NC"
+if [ -f "$ZSH" ]; then
+	exit 1
+else
+	echo "Please install zsh before start this script"
+	exit 1
+fi
 echo "Do you want to install zsh plugins? [yes|no]: \a\c"
-read zshans
-case $zshans in
+read plans
+case $plans in
 	[y|Y] | [yY][Ee][Ss] )
 		echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
 		git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 2> /dev/null
@@ -27,7 +33,7 @@ case $zshans in
 			echo "Backuping zshrc"
 			cp ~/.zshrc ~/.zshrc.orig 2> /dev/null
 		fi
-		cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc 2> /dev/null
+		curl -fLo ~/.zshrc "https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.zshrc"
 		echo "${GREEN}Success${NC}"
 		# chsh -s /bin/zsh
 		echo "${YELLOW}Cloning${NC} powerlevel10k \c"
@@ -35,15 +41,6 @@ case $zshans in
 		echo "${GREEN}Success${NC}"
 		git clone --quiet https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 2> /dev/null 
 		git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 2> /dev/null
-		vim ~/.zshrc -c %s/"robbyrussell"/"powerlevel10k\/powerlevel10k"/g -c wq
-		vim ~/.zshrc -c %s/\(git\)/\(git\ colored-man-pages\ common-aliases\ command-not-found\ copyfile\ zsh-autosuggestions\ zsh-syntax-highlighting\ web-search\)/g -c wq
-		echo "POWERLEVEL9K_MODE='awesome-fontconfig'" >> ~/.zshrc
-		echo "POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs newline newline os_icon)" >> ~/.zshrc
-		echo "POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time)" >> ~/.zshrc
-		echo "alias zcfg=\"vim ~/.zshrc\"" >> ~/.zshrc
-		echo "alias zsrc=\"source ~/.zshrc\"" >> ~/.zshrc
-		echo "alias rm=\"rm -i\"" >> ~/.zshrc
-		echo "alias rmsh=\"rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim* && echo 'Restart term'\"" >> ~/.zshrc
 		source ~/.zshrc 2> /dev/null
 		echo "${YELLOW}Installation${NC} font \c"
 		case "$OSTYPE" in
@@ -57,13 +54,14 @@ case $zshans in
 				;;
 		esac
 		echo "${GREEN}Success${NC}"
-		echo "Choose as terminal font ${GREEN} Droid Sans Mono for Powerline Nerd Font Complete.otf${NC}"
+		echo "Logout and choose as terminal font"
+		echo "${GREEN} Droid Sans Mono for Powerline Nerd Font Complete.otf${NC}"
 		;;
 esac
 
 PREV_DIR=$(pwd)
 vpi () {
-	echo "${YELLOW}Installation${NC} $2 \c"
+	echo "${YELLOW}Installing${NC} $2 \c"
 	local inst_dir="$HOME/.vim/pack/$1/start/"
 	mkdir -p $inst_dir > /dev/null
 	cd $inst_dir > /dev/null
