@@ -18,7 +18,6 @@ cat <<-'EOF'
 EOF
 printf "$NC"
 if [ -f "$ZSH" ]; then
-	exit 1
 else
 	echo "Please install zsh before start this script"
 	exit 1
