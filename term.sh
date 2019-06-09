@@ -17,11 +17,6 @@ cat <<-'EOF'
      \__\/         |__|/         \__\/         \__\/                       \__\/                     \__\/    
 EOF
 printf "$NC"
-if [ -f "$ZSH" ]; then
-else
-	echo "Please install zsh before start this script"
-	exit 1
-fi
 echo "Do you want to install zsh plugins? [yes|no]: \a\c"
 read plans
 case $plans in
