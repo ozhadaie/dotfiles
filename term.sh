@@ -87,16 +87,19 @@ case $vimans in
 		vpi airblade vim-gitgutter
 		vpi chriskempson base16-vim
 		vpi easymotion vim-easymotion
+		vpi jiangmiao auto-pairs
+		vpi justinmk vim-syntax-extra
 		vpi kien rainbow_parentheses.vim
 		vpi majutsushi tagbar
+		vpi octol vim-cpp-enhanced-highlight
 		vpi powerline powerline
 		vpi ryanoasis vim-devicons
 		vpi scrooloose nerdtree
 		vpi tiagofumo vim-nerdtree-syntax-highlight
-		vpi tpope vim-speeddating
-		vpi tpope vim-repeat
-		vpi tpope vim-surround
 		vpi tpope vim-fugitive
+		vpi tpope vim-repeat
+		vpi tpope vim-speeddating
+		vpi tpope vim-surround
 		vpi vim-airline vim-airline
 		vpi vim-airline vim-airline-themes
 		vpi vim-scripts c.vim
@@ -104,7 +107,6 @@ case $vimans in
 		vpi w0rp ale
 		vpi xolox vim-misc
 		vpi xolox vim-session
-		vpi jiangmiao auto-pairs
 		echo "Do you want to overwrite vimrc? [yes or no]: \c"
 		read ans
 		case $ans in
