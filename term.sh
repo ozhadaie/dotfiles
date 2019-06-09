@@ -51,6 +51,11 @@ case $plans in
 		echo "Logout and choose as terminal font"
 		echo "${GREEN} Droid Sans Mono for Powerline Nerd Font Complete.otf${NC}"
 		;;
+	[nN] | [n|N][O|o] )
+		;;
+	*)
+		echo "Invalid input"
+		;;
 esac
 
 PREV_DIR=$(pwd)
