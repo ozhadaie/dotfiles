@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.gem/ruby/2.3.0/bin
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=(git colored-man-pages common-aliases command-not-found copyfile zsh-autosuggestions zsh-syntax-highlighting web-search)
+plugins=(z git colored-man-pages common-aliases command-not-found copyfile zsh-autosuggestions zsh-syntax-highlighting web-search)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -22,6 +22,7 @@ alias rm="rm -i"
 alias rmsh="rm -rf ~/.oh-my-zsh ~/.zsh* ~/.vim* && echo 'Restart term'"
 alias pipenv='python3 -m pipenv'
 alias cc='cc -Wall -Wextra -Werror'
+alias vrc='vim ~/.vimrc'
 # }}}
 
 echo "\033[1;32m"
