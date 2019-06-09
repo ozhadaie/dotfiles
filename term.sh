@@ -20,7 +20,7 @@ printf "$NC"
 echo "Do you want to install zsh plugins? [yes|no]: \a\c"
 read plans
 case $plans in
-	[y|Y] | [yY][Ee][Ss] )
+	[yY] | [yY][Ee][Ss] )
 		echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
 		git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 2> /dev/null
 		if [ -f "~/.zshrc" ]; then
