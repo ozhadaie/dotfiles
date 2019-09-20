@@ -17,15 +17,34 @@ cat <<-'EOF'
      \__\/         |__|/         \__\/         \__\/                       \__\/                     \__\/
 EOF
 printf "$NC"
-echo "Do you want to install zsh plugins? [yes|no]: \a\c"
-read plans
-case $plans in
+echo -n "Do you want to install zsh plugins? [yes|no]: "
+read goal
+case $goal in
 	[yY] | [yY][Ee][Ss] )
 		rm -rf ~/.oh-my-zsh
 		echo "${YELLOW}Cloning${NC} oh-my-zsh \c"
 		git clone --quiet https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh 
 		echo "${GREEN}Success${NC}"
-		# chsh -s $(which zsh)
+		echo "Change default term to zsh"
+		chsh -s $(which zsh)
+		echo "${YELLOW}Downloading${NC} font \c"
+		case $(uname | tr '[:upper:]' '[:lower:]') in
+			linux*)
+				echo "Install for Linux"
+				mkdir -p ~/.local/share/fonts
+				cd ~/.local/share/fonts && curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf
+				xdg-open "MesloLGS NF Regular.ttf"
+				;;
+			darwin*)
+				echo "Install for OSX"
+				mkdir -p ~/Library/Fonts
+				cd ~/Library/Fonts && curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/dotfiles-public/raw/master/.local/share/fonts/NerdFonts/MesloLGS%20NF%20Regular.ttf
+				open "MesloLGS NF Regular.ttf"
+				;;
+		esac
+		echo "${GREEN}Success${NC}"
+		echo "Please install this font in terminal preferences"
+		echo "${GREEN} MesloLGS NF Regular.ttf${NC}"
 		echo "${YELLOW}Cloning${NC} powerlevel10k \c"
 		git clone --quiet https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k > /dev/null
 		echo "${GREEN}Success${NC}"
@@ -36,23 +55,8 @@ case $plans in
 			cp ~/.zshrc ~/.zshrc.orig
 		fi
 		curl -fLo ~/.zshrc "https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.zshrc" > /dev/null
-		source ~/.zshrc
-		echo "${YELLOW}Downloading${NC} font \c"
-		case $(uname | tr '[:upper:]' '[:lower:]') in
-			linux*)
-				echo "Install for Linux"
-				mkdir -p ~/.local/share/fonts
-				cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-				;;
-			darwin*)
-				echo "Install for OSX"
-				mkdir -p ~/Library/Fonts
-				cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
-				;;
-		esac
-		echo "${GREEN}Success${NC}"
-		echo "Please install this font in terminal preferences"
-		echo "${GREEN} Droid Sans Mono for Powerline Nerd Font Complete.otf${NC}"
+		echo "Restart terminal"
+		#source ~/.zshrc
 		;;
 	[nN] | [n|N][O|o] )
 		;;

@@ -6,8 +6,6 @@ set enc=utf-8
 set nowrap
 set wildmenu
 set fileencodings=utf-8,koi8-r
-let g:hdr42user="ozhadaie"
-let g:hdr42mail=""
 let mapleader=","
 let g:C_MapLeader=""
 map <Leader>e :vsp ~/.vimrc<CR>
@@ -334,5 +332,3 @@ augroup END
 
 set autoread
 " }}}
-
-nnoremap ,html :-1read $HOME/.vim/snippets/some.snp<CR>
