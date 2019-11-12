@@ -6,6 +6,7 @@ let g:mustache_abbreviations = 1
 call plug#begin('~/.vim/plugged')
 
 "Plug 'vim-scripts/restore_view.vim'
+Plug 'Valloric/YouCompleteMe'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
