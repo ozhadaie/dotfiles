@@ -45,7 +45,7 @@ case $vimans in
 		curl -fSsL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/.vimrc -o ~/.vimrc
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-		vim -c "so ~/.vimrc" -c "PlugInstall" -c "wq"
+		vim -c "so ~/.vimrc" -c "PlugInstall"
 		;;
 	[nN] | [n|N][O|o] )
 		;;
