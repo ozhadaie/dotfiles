@@ -17,9 +17,3 @@ Dotfiles is installed by running one of the following commands in your terminal.
 ```shell
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/term.sh)"
 ```
-
-#### via wget
-
-```shell
-sh -c "$(wget -O- https://raw.githubusercontent.com/ozhadaie/dotfiles/master/term.sh)"
-```
