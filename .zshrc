@@ -7,7 +7,7 @@ fi
 
 export PORT=8080
 export PATH=$HOME/bin:/usr/local/bin:$PATH:$HOME/.gem/ruby/2.6.0/bin
-export ZSH="/home/ozhadaie/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 export LANG=en_US.utf-8
 
