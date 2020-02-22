@@ -15,5 +15,5 @@ Dotfiles is installed by running one command in your terminal. You can install t
 #### via curl
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/term.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ozhadaie/dotfiles/master/setup.sh)"
 ```
